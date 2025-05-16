@@ -16,15 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/estadoapi")
 public class EstadoRestController {
 
-
     @Autowired
     private EstadoDAO EstadoDAO;
 
-    @GetMapping("/bypais/{IdPais}")
-    public ResponseEntity<Estado> EstadoByid(@PathVariable int IdPais) {
-        return EstadoDAO.findById(IdPais)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping("/bypais/{idPais}")
+    public ResponseEntity<List<Estado>> EstadoByid(@PathVariable int idPais) {
+        List<Estado> estados = EstadoDAO.findByPaisIdPais(idPais);
+        if (estados.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(estados);
     }
 
 }

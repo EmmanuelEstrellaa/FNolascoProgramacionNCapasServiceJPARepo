@@ -21,7 +21,7 @@ public class Estado {
 
     @ManyToOne
     @JoinColumn(name = "idpais")
-    public Pais Pais;
+    public Pais pais;
 
     public int getIdEstado() {
         return IdEstado;
@@ -40,11 +40,12 @@ public class Estado {
     }
 
     public Pais getPais() {
-        return Pais;
+        return pais;
     }
 
-    public void setPais(Pais Pais) {
-        this.Pais = Pais;
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
+
 
 }
